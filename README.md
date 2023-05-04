@@ -10,7 +10,9 @@ Obtain a CircuitPython-compatible microcontroller and copy everything in this fo
 ```python
 secrets = {
     "ssid": "replace me with your WiFi network name",
-    "password": "replace me with your WiFi password",
+    "wifi_pw": "replace me with your WiFi password",
+    "email": "address@site.com"
+    "email_pw": "Em@i1P@55w0rd"
 }
 ```
 And everything should work! The blue light should flash on or off every five minutes, alternating with each measurement.
