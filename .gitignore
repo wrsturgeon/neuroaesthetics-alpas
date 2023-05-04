@@ -7,3 +7,6 @@
 **/\.*
 # but not .gitignore
 !.gitignore
+
+# After the initial commit, don't save edits to `secrets.py`
+/secrets.py
