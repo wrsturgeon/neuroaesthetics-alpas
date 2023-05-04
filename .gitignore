@@ -1,0 +1,9 @@
+/.fseventsd
+/.vscode
+/boot_out.txt
+**/.DS_Store
+
+# anything starting with a dot
+**/\.*
+# but not .gitignore
+!.gitignore
