@@ -19,6 +19,9 @@ import socketpool
 import ssl
 import wifi
 
+# email
+from circuitpython_email import smtp
+
 # WiFi info
 try:
     from secrets import secrets
@@ -82,6 +85,13 @@ while True:
         print("-" * 40)
         print(requests.get("http://wifitest.adafruit.com/testwifi/index.html").text)
         print("-" * 40)
+
+
+        smtp.send(
+            to=secrets["email"],  # email ourselves!
+            subject="Hello, World!",
+            body="Hello from your CircuitPython device!",
+        )
 
         next_time = time.localtime()
 
