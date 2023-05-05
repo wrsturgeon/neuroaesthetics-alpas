@@ -1,6 +1,6 @@
 # Penn Center for Neuroaesthetics Ambient Light Sensor
 
-Written in CircuitPython for ease of maintenance in case something goes wrong from across the country.
+Written in CircuitPython for ease of maintenance from across the country.
 
 Currently tested on an Unexpected Maker Feather S3 & Adafruit BH1750 soldered so that `VIN 3Vo GND SCL SDA` on the BH1750 connect to `1 38 33 SCL SDA` on the Feather. Note that `ADDR` is left unsoldered and `3Vo`/`38` is unused but soldered anyway to avoid having to chop header pins in half.
 
@@ -18,3 +18,5 @@ secrets = {
 }
 ```
 And everything should work! The blue light should flash on or off every five minutes, alternating with each measurement.
+
+To update to the newest version of our code, run `./update.sh`.
