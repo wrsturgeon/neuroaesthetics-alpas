@@ -111,5 +111,5 @@ while True:
             led.value = False
             # print(onboard_amb.value)
             print("{:8.2f} lux".format(sensor.lux))
-    except _:
+    except e:
         pass
