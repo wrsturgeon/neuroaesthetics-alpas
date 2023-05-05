@@ -14,7 +14,6 @@ import time
 
 # for Internet capabilities
 import adafruit_requests
-import ipaddress
 import socketpool
 import ssl
 import wifi
@@ -59,6 +58,8 @@ vin.value = True
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = adafruit_bh1750.BH1750(i2c, 0x23)
 
+sslctx = ssl.create_default_context()
+
 while True:
     try:
         print()
@@ -79,15 +80,20 @@ while True:
         print("    Done! Sensor IP address:", wifi.radio.ipv4_address)
 
         pool = socketpool.SocketPool(wifi.radio)
-        requests = adafruit_requests.Session(pool, ssl.create_default_context())
 
         # see https://learn.adafruit.com/pyportal-email-display/internet-connect
         print("-" * 40)
-        print(requests.get("http://wifitest.adafruit.com/testwifi/index.html").text)
+        print(
+            adafruit_requests.Session(pool, sslctx)
+            .get("http://wifitest.adafruit.com/testwifi/index.html")
+            .text
+        )
         print("-" * 40)
 
-
+        smtp_socket = sslctx.wrap_socket(pool.socket())
+        smtp.init_connection(smtp_socket)
         smtp.send(
+            socket=smtp_socket,
             to=secrets["email"],  # email ourselves!
             subject="Hello, World!",
             body="Hello from your CircuitPython device!",
