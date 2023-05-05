@@ -13,10 +13,15 @@ secrets = {
     "wifi_pw": "replace me with your WiFi password",
     "email": "address@site.com"
     "password": "S3cureP@ssw0rd"
+    "login_encrypted": "AGFkZHJlc3NAc2l0ZS5jb20AUzNjdXJlUEBzc3cwcmQ=" # See below the code snippet for an explanation!
     "host": "smtp.gmail.com",
     "port": 465, # Gmail's required SSL port
 }
 ```
+How did we get the value for `login_encrypted`?
+In a terminal (not Python), type `echo -ne '\0{your username}\0{your password}' | base64`.
+With the above email and password, it would be `echo -ne '\0address@site.com\0S3cureP@ssw0rd' | base64` (exactly, to the letter!), which should output `AGFkZHJlc3NAc2l0ZS5jb20AUzNjdXJlUEBzc3cwcmQ=`. Do this for your username and password, then copy it into the `login_encrypted` field.
+
 And everything should work! The blue light should flash on or off every five minutes, alternating with each measurement.
 
 To update to the newest version of our code, run `./update.sh`.
